@@ -1,0 +1,25 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto post-form-container">
+          <h1 class="title">社労士セカンドオピニオン 「シャロオピ」は日本初の社労士のセカンドオピニオンサイトです</h1>
+      <p class="">「シャロオピ」は、社労士に無料で相談できる「〇〇」や、地域や分野などから社労士や社労士事務所を探せる「社労士検索」など、労務トラブルの解決をサポートするコンテンツを多数ご用意しています。</p>
+
+            <li class="">
+              <a>社労士を探す</a>
+            </li>
+
+      
+        <div class="">
+        
+            <li class="">
+              <a>労務相談を見る</a>
+            </li>
+            <li class="">
+             <a> <%= link_to "労務相談を投稿する", create_consulting_path, class: "nav-link" %></a>
+            </li>
+    </div>    
+    <% @consultings.each do |consulting| %>
+    <div><%= consulting.title %></div>
+    <% end %>
+</div>

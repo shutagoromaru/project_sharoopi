@@ -2,12 +2,12 @@ version: "3.8"
 
 services:
   rails:
-    container_name: rails-app
+    container_name: sharoopiapp
     build:
       context: .
       dockerfile: .docker/local/ruby/Dockerfile
     tty: true
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    # command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
       - "8080:3000"
     working_dir: /src
@@ -22,7 +22,7 @@ services:
       - mysql
 
   mysql:
-    container_name: rails-mysql
+    container_name: sharoopi-mysql
     build: .docker/local/mysql
     ports:
       - "3306:3306"
