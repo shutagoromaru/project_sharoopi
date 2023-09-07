@@ -13,6 +13,11 @@ class ConsultingsController < ApplicationController
     render :index
   end
   
+  def list
+    @consultings=Consulting.order("id desc")
+    render :list
+  end
+
   
  def new
    @consulting = Consulting.new
@@ -29,6 +34,28 @@ class ConsultingsController < ApplicationController
      render :new, status: :unprocessable_entity
    end
  end 
+
+ def show
+  @consulting = Consulting.find(params[:consulting_id])
+  @response = Response.new
+  
+  render :show
+end
+
+def create_response
+  @response = Response.new(response_params)
+  @response.consulting_id=params[:consulting_id]
+  @response.user_id=current_user.id
+  if @response.save
+    redirect_to new_response_path(params[:consulting_id]), notice: '回答しました'
+  else
+    # 失敗した場合には app/views/posts/show.html.erb で必要な変数を取得します
+    @consulting = Consulting.find(params[:consulting_id])
+    @responses = Response.where(consulting_id: params[:consulting_id])
+    render :show, status: :unprocessable_entity
+  end
+end
+
 
  def edit
     @consulting = Consulting.find(params[:id])
@@ -66,7 +93,10 @@ class ConsultingsController < ApplicationController
   params.require(:consulting).permit(:title,:content)
  end 
  
- 
+def response_params
+  params.require(:response).permit(:content,:title)
+end
+
  
 end 
 

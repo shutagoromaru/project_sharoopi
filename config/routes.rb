@@ -5,12 +5,16 @@
   # Defines the root path route ("/")
   # root "articles#index"
 
-# User_propilesController
-  get 'user_propiles/new', to: 'user_propiles#new', as: 'new_user_propile'
+# User_profilesController
+  get 'user_profiles/:user_id', to: 'user_profiles#show', as: 'show_user_profile'
+  get 'user_profiles', to: 'user_profiles#edit', as: 'edit_user_profile'
+  post 'user_profiles', to: 'user_profiles#update', as: 'update_user_profile'
+
 
 # ConsultingsController
 
   get '/', to: 'consultings#index', as: 'index_consulting'
+  get 'consultings', to: 'consultings#list', as: 'list_consulting'
   get 'consultings/new', to: 'consultings#new', as: 'new_consulting'
   post 'consultings/new', to: 'consultings#create', as: 'create_consulting'
   get 'consultings/edit/:id', to: 'consultings#edit', as: 'edit_consulting'
@@ -18,8 +22,11 @@
 
 
 # ResponsesController
-  get 'responses/new', to: 'responses#new', as: 'new_response'
-  post 'responses/new', to: 'responses#create', as: 'create_response'
+  #一旦変更　get 'responses/new', to: 'responses#new', as: 'new_response'
+  #一旦変更　post 'responses/new', to: 'responses#create', as: 'create_response'
+  get 'consultings/:consulting_id', to: 'consultings#show', as: 'new_response'
+  post 'consultings/:consulting_id', to: 'consultings#create_response', as: 'create_response'
+
 
 # LikesController
   get 'likes/new', to: 'likes#new', as: 'new_like'

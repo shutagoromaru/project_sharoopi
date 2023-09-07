@@ -7,6 +7,18 @@
     <div>
      <%= @consulting.content%>
    </div>
+   <div>
+  <% @consulting.responses.each do |res| %>
+  <div>
+  <p>
+  <%= res.title%>
+  </p>
+  <p>
+    <%= res.content%>
+  </p>
+  </div>
+  <% end %>
+   </div>
 
       <h2 class="h2">回答</h2>
       <%= form_with(url: create_response_path,model: @response, local: true, method: :post, html: { class: 'post-form' } ) do |f| %>

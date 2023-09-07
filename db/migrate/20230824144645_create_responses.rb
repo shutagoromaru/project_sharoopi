@@ -1,7 +1,8 @@
 class CreateResponses < ActiveRecord::Migration[7.0]
   def change
     create_table :responses do |t|
-      t.integer :user_id
+      t.references :user, null: false, foreign_key: true
+      t.references :consulting, null: false, foreign_key: true
       t.text :content
 
       t.timestamps

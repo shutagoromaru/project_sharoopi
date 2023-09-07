@@ -1,0 +1,12 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto post-form-container">
+        
+            <% @consultings.each do |consulting| %>
+                <%= link_to consulting.title, new_response_path(consulting.id), class: "nav-link" %>
+                <div><%= consulting.title %></div>
+            <% end %>
+        </div>
+    </div>
+</div>

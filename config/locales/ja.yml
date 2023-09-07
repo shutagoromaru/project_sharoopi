@@ -4,6 +4,22 @@ ja:
       user: 'ユーザー'
       consulting: '相談'
 
+#相談と回答を紐付けする際に追加
+  # response: 'コメント'
+  #   attributes:
+  #     user:
+  #       email: 'メールアドレス'
+  #       password: 'パスワード'
+  #       password_confirmation: 'パスワード確認用'
+  #     consulting:
+  #       title: 'タイトル'
+  #       content: '内容'
+  #     response:
+  #       title: 'タイトル'
+  #     # レスポンスをのブロックを追加
+  #     response:
+  #       content: 'コメント'
+
     attributes:
       user:
         email: 'メールアドレス'
