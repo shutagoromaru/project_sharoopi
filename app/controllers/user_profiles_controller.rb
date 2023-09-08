@@ -4,6 +4,7 @@ class UserProfilesController < ApplicationController
         @user_profile =UserProfile.find_by(user_id: params[:user_id])
         @me=current_user
         render :show
+
     end
 
     def edit
@@ -39,9 +40,9 @@ class UserProfilesController < ApplicationController
                 end
             end
     end
-    
+
     private
     def user_profile_params
       params.require(:user_profile).permit(:name, :url, :self_introduction, :special) # ここで許可するフィールドを列挙
     end
-
+end

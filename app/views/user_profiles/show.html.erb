@@ -1,5 +1,28 @@
 <div>
-<%= @user_profile.name%>
+    
+    <% if @user_profile!=nil%>
+        <% if @me.id==@user_profile.user_id%>
+            <%= link_to "編集する", edit_user_profile_path, class: "nav-link" %>
+        <% end %>
+        <div>        
+            <p><%= @user_profile.name%></p>
+            <p><%= @user_profile.url%></p>
+            <p><%= @user_profile.special%></p>
+        </div>
+            
+
+
+
+    <% else %>
+        <% if @me.id==params[:user_id].to_i%>
+            <%= link_to "登録する", edit_user_profile_path, class: "nav-link" %>
+        <% end %>
+        <div>        
+            <p>未登録</p>
+        </div>
+    <% end %>
+
+<%#= @user_profile.name%>
 <%# ログイン中の（自分自身の）プロフィールの場合は、編集ボタンを出す%>
-<%= @me%>
+<%#= @me%>
 </div>
