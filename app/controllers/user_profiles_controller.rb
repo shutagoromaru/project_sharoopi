@@ -43,6 +43,6 @@ class UserProfilesController < ApplicationController
 
     private
     def user_profile_params
-      params.require(:user_profile).permit(:name, :url, :self_introduction, :special) # ここで許可するフィールドを列挙
+      params.require(:user_profile).permit(:name, :url, :self_introduction, :special, :image) # ここで許可するフィールドを列挙
     end
 end

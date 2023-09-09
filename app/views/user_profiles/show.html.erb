@@ -4,7 +4,8 @@
         <% if @me.id==@user_profile.user_id%>
             <%= link_to "編集する", edit_user_profile_path, class: "nav-link" %>
         <% end %>
-        <div>        
+        <div>
+            <%= image_tag @user_profile.image.variant(resize: '500x500'), class: 'user_profile-image' if @user_profile.image.attached? %>        
             <p><%= @user_profile.name%></p>
             <p><%= @user_profile.url%></p>
             <p><%= @user_profile.special%></p>

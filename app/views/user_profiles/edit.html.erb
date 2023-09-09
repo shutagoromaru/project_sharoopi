@@ -1,1 +1,10 @@
 <p>これはeditです</p>
+#登録フォーム
+
+<%= form_with model: user_profile do |f| %>
+
+  <%= f.label :image, '画像' %>
+  <%= f.file_field :image, required: true %>
+
+	<%= f.submit '登録', class: 'submit-button' %>
+<% end %>
