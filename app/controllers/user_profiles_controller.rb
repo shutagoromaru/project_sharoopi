@@ -39,7 +39,17 @@ class UserProfilesController < ApplicationController
                 render :edit, alert: 'プロフィールの登録に失敗しました'
                 end
             end
-    end
+
+            if params[:user_profile][:image]
+                @user_profile.image.attach(params[:user_profile][:image])
+              end
+          
+              if @user_profile.save
+                redirect_to edit_user_profile_path, notice: '登録しました'
+              else
+                render :edit, status: :unprocessable_entity
+              end
+            end
 
     private
     def user_profile_params
