@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :consultings
   has_many :responses
   has_one :user_profile
-  
+  has_many :favorites, dependent: :destroy
 end

@@ -23,33 +23,33 @@ class UserProfilesController < ApplicationController
             if @user_profile
              # プロフィールレコードが既に存在する場合、更新処理を行う
                 if @user_profile.update(user_profile_params)
-            redirect_to show_user_profile_path, notice: 'プロフィールが更新されました'
+                redirect_to show_user_profile_path(user.id), notice: 'プロフィールが更新されました'
                 else
-            render :edit, alert: 'プロフィールの更新に失敗しました'
+                render :edit, alert: 'プロフィールの更新に失敗しました'
                 end
             else
-            # プロフィールレコードが存在しない場合、新規作成を行う
-             @user_profile = UserProfile.new(user_profile_params)
-            user_profile.user_id = user.id
-
+                # プロフィールレコードが存在しない場合、新規作成を行う
+                @user_profile = UserProfile.new(user_profile_params)
+                user_profile.user_id = user.id
 
                 if @user_profile.save
-                redirect_to show_user_profile_path, notice: 'プロフィールが登録されました'
+                    attach_image_if_present
+                    redirect_to show_user_profile_path(user.id), notice: 'プロフィールが登録されました' and return
                 else
-                render :edit, alert: 'プロフィールの登録に失敗しました'
+                    render :edit, alert: 'プロフィールの登録に失敗しました' and return
                 end
             end
+    end
 
-            if params[:user_profile][:image]
-                @user_profile.image.attach(params[:user_profile][:image])
-              end
-          
-              if @user_profile.save
-                redirect_to edit_user_profile_path, notice: '登録しました'
-              else
-                render :edit, status: :unprocessable_entity
-              end
+    private
+
+    def attach_image_if_present
+        if params[:user_profile][:image]
+            unless @user_profile.image.attach(params[:user_profile][:image])
+                flash[:alert] = '画像の保存に失敗しました'
             end
+        end
+    end
 
     private
     def user_profile_params

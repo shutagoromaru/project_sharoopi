@@ -26,6 +26,16 @@
   #一旦変更　post 'responses/new', to: 'responses#create', as: 'create_response'
   get 'consultings/:consulting_id', to: 'consultings#show', as: 'new_response'
   post 'consultings/:consulting_id', to: 'consultings#create_response', as: 'create_response'
+  #いいね
+  post 'consultings/:consulting_id/responses/:response_id/favorite', to: 'consultings#favorite_create', as: 'favorite_create'
+  delete 'consultings/:consulting_id/responses/:response_id/favorite', to: 'consultings#favorite_delete', as: 'favorite_delete'
+
+  resources :consultings do
+    resources :responses do
+      resource :favorite, only: [:create, :destroy,] 
+    end
+  end
+
 
 
 # LikesController
