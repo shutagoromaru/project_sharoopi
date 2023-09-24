@@ -1,25 +1,32 @@
 
-<div class="container">
+<div class="consulting-form-container">
   <div class="row">
     <div class="col-md-10 mx-auto post-form-container">
-          <h1 class="title">社労士セカンドオピニオン 「シャロオピ」は日本初の社労士のセカンドオピニオンサイトです</h1>
-      <p class="">「シャロオピ」は、社労士に無料で相談できる「〇〇」や、地域や分野などから社労士や社労士事務所を探せる「社労士検索」など、労務トラブルの解決をサポートするコンテンツを多数ご用意しています。</p>
+      <h1 class="title">
+        社労士セカンドオピニオン 「シャロオピ」は<br>社労士による労務相談に関するセカンドオピニオンサイトです
+      </h1>
+      <p class="">
+        「シャロオピ」は、企業の抱える人事労務に関する問題について、企業の顧問社労士の方の回答に疑問をいただいた企業ご担当者の方や、<br>
+        回答が正しいとしても自社の方向性と一致したものでないとお悩みの方に、他の解決方法や進め方がないかを第三者の社労士の方の意見を求めることで<br>
+        安心して前に進んでいただく機会を作るサービスです。
+      </p>
+      <%# <button type="button" class="btn btn-primary">Primary</button> %>
 
-            <li class="">
-              <a>社労士を探す</a>
-            </li>
+        <a>
+         <%= link_to "相談・回答一覧を見る", list_consulting_path, class: "nav-link" %>
+        </a> 
+      </li>
 
-      
-        <div class="">
-        
-            <li class="">
-              <a>労務相談を見る</a>
-            </li>
-            <li class="">
-             <a> <%= link_to "労務相談を投稿する", create_consulting_path, class: "nav-link" %></a>
-            </li>
-    </div>    
-    <% @consultings.each do |consulting| %>
-    <div><%= consulting.title %></div>
-    <% end %>
+        <a> 
+          <%= link_to "労務相談を投稿する", create_consulting_path, class: "nav-link" %>
+        </a>
+      </li>
+
+      <% @consultings.each do |consulting| %>
+        <div class="consulting-content">
+          <%= consulting.content %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

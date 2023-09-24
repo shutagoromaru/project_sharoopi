@@ -37,6 +37,11 @@ class ConsultingsController < ApplicationController
 
  def show
   @consulting = Consulting.find(params[:consulting_id])
+  # @consulting = Consulting.preload(responses: :favorites)
+  #          .joins(responses: :favorites)
+  #          .where(id: params[:consulting_id])
+  #          .where(favorites: { user_id: current_user.id })
+  #          .first
   @response = Response.new
   
   render :show
